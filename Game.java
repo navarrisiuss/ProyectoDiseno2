@@ -8,16 +8,19 @@ public class Game extends Canvas implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
     private final int FPS = 60;
-    private double targetTime = 1000000000/ FPS;
     private double delta = 0;
-    private int AVERAGE_FPS = FPS;
     private int FONDO_X = 0;
     private int FONDO_INVERTIDO_X = 0;
     private int FONDO2_X = 0;
-    private int FONDO_INVERTIDO2_X = 0;
+    private int VELOCIDAD_FONDO = 2;
+    private int DISTANCIA_RECORRIDA = 0;
+    private KeyHandler keyHandler = new KeyHandler();
+    private Dinosaurio dinosaurio = new Dinosaurio();
+    private GameState gameState = GameState.getInstance();
 
     public Game() {
         window = new GameWindow();
+        window.getCanvas().addKeyListener(keyHandler);
     }
 
     private void init() {
@@ -25,19 +28,28 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void update() {
-        FONDO_X--;
+        DISTANCIA_RECORRIDA += VELOCIDAD_FONDO;
+        FONDO_X -= VELOCIDAD_FONDO;
         FONDO_INVERTIDO_X = FONDO_X + Assets.fondoBosque.getWidth();
         FONDO2_X = FONDO_INVERTIDO_X + Assets.fondoBosqueInvertido.getWidth();
-        FONDO_INVERTIDO2_X = FONDO2_X + Assets.fondoBosque.getWidth();
 
         // Carrusel infinito de fondos
         if (FONDO2_X <= 0) {
             FONDO_X = 0;
             FONDO_INVERTIDO_X = FONDO_X + Assets.fondoBosque.getWidth();
             FONDO2_X = FONDO_INVERTIDO_X + Assets.fondoBosqueInvertido.getWidth();
-            FONDO_INVERTIDO2_X = FONDO2_X + Assets.fondoBosque.getWidth();
         }
 
+        dinosaurio.update();
+
+        if (keyHandler.up) {
+            dinosaurio.saltar();
+        }
+        if (keyHandler.down) {
+
+        }
+
+        gameState.setCurrentScore((gameState.getCurrentScore() + VELOCIDAD_FONDO));
     }
 
     private void draw() {
@@ -55,7 +67,9 @@ public class Game extends Canvas implements Runnable {
         g.drawImage(Assets.fondoBosque, FONDO_X, 0, this);
         g.drawImage(Assets.fondoBosqueInvertido, FONDO_INVERTIDO_X, 0, this);
         g.drawImage(Assets.fondoBosque, FONDO2_X, 0, this);
-
+        dinosaurio.render(g);
+        g.drawRect(window.getCanvas().getWidth() - 100, 0, 100, 40);
+        g.drawString("Score: " + gameState.getCurrentScore() / 10, window.getCanvas().getWidth() - 80, 25);
 
         // End drawing ---------------------------------------------------------------------------------
         g.dispose();
@@ -89,6 +103,7 @@ public class Game extends Canvas implements Runnable {
 
         while (running) {
             now = System.nanoTime();
+            double targetTime = (double) 1000000000 / FPS;
             delta += (now - lastTime) / targetTime;
             lastTime = now;
 
@@ -99,7 +114,7 @@ public class Game extends Canvas implements Runnable {
             }
 
             if (timer >= 1000000000) {
-                AVERAGE_FPS = frames;
+                int AVERAGE_FPS = frames;
                 frames = 0;
                 timer = 0;
             }

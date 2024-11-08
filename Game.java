@@ -11,6 +11,10 @@ public class Game extends Canvas implements Runnable {
     private double targetTime = 1000000000/ FPS;
     private double delta = 0;
     private int AVERAGE_FPS = FPS;
+    private int FONDO_X = 0;
+    private int FONDO_INVERTIDO_X = 0;
+    private int FONDO2_X = 0;
+    private int FONDO_INVERTIDO2_X = 0;
 
     public Game() {
         window = new GameWindow();
@@ -21,7 +25,19 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void update() {
-        System.out.println("FPS: " + AVERAGE_FPS);
+        FONDO_X--;
+        FONDO_INVERTIDO_X = FONDO_X + Assets.fondoBosque.getWidth();
+        FONDO2_X = FONDO_INVERTIDO_X + Assets.fondoBosqueInvertido.getWidth();
+        FONDO_INVERTIDO2_X = FONDO2_X + Assets.fondoBosque.getWidth();
+
+        // Carrusel infinito de fondos
+        if (FONDO2_X <= 0) {
+            FONDO_X = 0;
+            FONDO_INVERTIDO_X = FONDO_X + Assets.fondoBosque.getWidth();
+            FONDO2_X = FONDO_INVERTIDO_X + Assets.fondoBosqueInvertido.getWidth();
+            FONDO_INVERTIDO2_X = FONDO2_X + Assets.fondoBosque.getWidth();
+        }
+
     }
 
     private void draw() {
@@ -36,7 +52,10 @@ public class Game extends Canvas implements Runnable {
         g.clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
         // Draw here ----------------------------------------------------------------------------------
 
-        g.drawImage(Assets.fondoBosque, 0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight(), this);
+        g.drawImage(Assets.fondoBosque, FONDO_X, 0, this);
+        g.drawImage(Assets.fondoBosqueInvertido, FONDO_INVERTIDO_X, 0, this);
+        g.drawImage(Assets.fondoBosque, FONDO2_X, 0, this);
+
 
         // End drawing ---------------------------------------------------------------------------------
         g.dispose();
@@ -74,8 +93,8 @@ public class Game extends Canvas implements Runnable {
             lastTime = now;
 
             if (delta >= 1) {
-                update();
                 draw();
+                update();
                 delta--;
             }
 

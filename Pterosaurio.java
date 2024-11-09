@@ -1,9 +1,9 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class Cactus {
+public abstract class Pterosaurio {
     public int x = Assets.fondoBosque.getWidth();
-    public int y = 500 + 64 / 2;
+    public int y = 300;
     public BufferedImage image;
 
     public void render(Graphics g) {
@@ -19,9 +19,9 @@ public abstract class Cactus {
     }
 
     @Override
-    public Cactus clone() {
+    public Pterosaurio clone() {
         try {
-            return (Cactus) super.clone();
+            return (Pterosaurio) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
             return null;

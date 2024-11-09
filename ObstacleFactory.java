@@ -1,3 +1,4 @@
 public interface ObstacleFactory {
-    Obstacle createObstacle(String type);
+    Cactus createCactus();
+    Pterosaurio createPterosaurio();
 }

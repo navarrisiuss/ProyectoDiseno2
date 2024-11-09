@@ -1,7 +1,7 @@
 public class GameState {
     private static GameState instance;
-    private int currentScore;
-    private int maxScore;
+    private double currentScore;
+    private double maxScore;
     private boolean isGameActive;
 
     private GameState() {
@@ -17,18 +17,18 @@ public class GameState {
         return instance;
     }
 
-    public int getCurrentScore() {
+    public double getCurrentScore() {
         return currentScore;
     }
 
-    public void setCurrentScore(int score) {
+    public void setCurrentScore(double score) {
         this.currentScore = score;
         if (score > maxScore) {
             maxScore = score;
         }
     }
 
-    public int getMaxScore() {
+    public double getMaxScore() {
         return maxScore;
     }
 

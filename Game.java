@@ -8,12 +8,12 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private BufferStrategy bs;
     private Graphics g;
-    private final int FPS = 60;
+    private final int FPS = 144;
     private double delta = 0;
     private int FONDO_X = 0;
     private int FONDO_INVERTIDO_X = 0;
     private int FONDO2_X = 0;
-    static int VELOCIDAD_FONDO = 8;
+    static int VELOCIDAD_FONDO = 5;
     private int DISTANCIA_RECORRIDA = 0;
     private KeyHandler keyHandler = new KeyHandler();
     private Dinosaurio dinosaurio = new Dinosaurio();
@@ -97,7 +97,7 @@ public class Game extends Canvas implements Runnable {
         System.out.println("Game Over");
         SEGUNDOS_TRANSCURRIDOS = 0;
         DISTANCIA_RECORRIDA = 0;
-        VELOCIDAD_FONDO = 8;
+        VELOCIDAD_FONDO = 5;
         gameState.setCurrentScore(0);
     }
 

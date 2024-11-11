@@ -8,12 +8,12 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private BufferStrategy bs;
     private Graphics g;
-    private final int FPS = 144;
+    private final int FPS = 60;
     private double delta = 0;
     private int FONDO_X = 0;
     private int FONDO_INVERTIDO_X = 0;
     private int FONDO2_X = 0;
-    static int VELOCIDAD_FONDO = 5;
+    static int VELOCIDAD_FONDO = 8;
     private int DISTANCIA_RECORRIDA = 0;
     private KeyHandler keyHandler = new KeyHandler();
     private Dinosaurio dinosaurio = new Dinosaurio();
@@ -30,6 +30,7 @@ public class Game extends Canvas implements Runnable {
     private Cactus tipoCactus;
     private Pterosaurio tipoPterosaurio;
     private int PTEROSAURIOS_SEGUIDOS = 0;
+    private int CONTADOR_SPRITE = 0;
 
     public Game() {
         window = new GameWindow();
@@ -97,7 +98,7 @@ public class Game extends Canvas implements Runnable {
         System.out.println("Game Over");
         SEGUNDOS_TRANSCURRIDOS = 0;
         DISTANCIA_RECORRIDA = 0;
-        VELOCIDAD_FONDO = 5;
+        VELOCIDAD_FONDO = 8;
         gameState.setCurrentScore(0);
     }
 
@@ -167,7 +168,8 @@ public class Game extends Canvas implements Runnable {
 
         crearObstaculo();
 
-        gameState.setCurrentScore(gameState.getCurrentScore() + VELOCIDAD_FONDO * 0.1);
+        gameState.setCurrentScore(DISTANCIA_RECORRIDA / 100);
+        CONTADOR_SPRITE++;
     }
 
     private void drawBackground() {
@@ -185,6 +187,57 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    private void drawAnimations() {
+        if (keyHandler.down) {
+            drawDinosaurioCrouching();
+        } else if (keyHandler.up) {
+            drawDinosaurioJumping();
+        } else {
+            drawDinosaurioRunning();
+        }
+    }
+
+    private void drawDinosaurioRunning() {
+        if (CONTADOR_SPRITE < 10) {
+            g.drawImage(Assets.dinosaurioRojoRunning1, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else if (CONTADOR_SPRITE < 20) {
+            g.drawImage(Assets.dinosaurioRojoRunning2, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else if (CONTADOR_SPRITE < 30) {
+            g.drawImage(Assets.dinosaurioRojoRunning3, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else if (CONTADOR_SPRITE < 40) {
+            g.drawImage(Assets.dinosaurioRojoRunning4, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else if (CONTADOR_SPRITE < 50) {
+            g.drawImage(Assets.dinosaurioRojoRunning5, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else if (CONTADOR_SPRITE < 60) {
+            g.drawImage(Assets.dinosaurioRojoRunning6, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else if (CONTADOR_SPRITE < 70) {
+            g.drawImage(Assets.dinosaurioRojoRunning7, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else {
+            g.drawImage(Assets.dinosaurioRojoRunning1, dinosaurio.getX(), dinosaurio.getY(), this);
+            CONTADOR_SPRITE = 0;
+        }
+    }
+
+    private void drawDinosaurioJumping() {
+        if (CONTADOR_SPRITE < 10) {
+            g.drawImage(Assets.dinosaurioRojoJumping1, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else {
+            g.drawImage(Assets.dinosaurioRojoJumping1, dinosaurio.getX(), dinosaurio.getY(), this);
+            CONTADOR_SPRITE = 0;
+        }
+    }
+
+    private void drawDinosaurioCrouching() {
+        if (CONTADOR_SPRITE < 10) {
+            g.drawImage(Assets.dinosaurioRojoCrouching1, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else if (CONTADOR_SPRITE < 20) {
+            g.drawImage(Assets.dinosaurioRojoCrouching2, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else {
+            g.drawImage(Assets.dinosaurioRojoCrouching1, dinosaurio.getX(), dinosaurio.getY(), this);
+            CONTADOR_SPRITE = 0;
+        }
+    }
+
     private void draw() {
         bs = window.getCanvas().getBufferStrategy();
         if (bs == null) {
@@ -196,12 +249,16 @@ public class Game extends Canvas implements Runnable {
         // Clear screen
         g.clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
         // Draw here ----------------------------------------------------------------------------------
-
         drawBackground();
 
-        dinosaurio.render(g);
-
         drawObstacles();
+
+        drawAnimations();
+
+
+        // Draw hitbox dinosaurio
+        g.setColor(Color.RED);
+        g.drawRect(dinosaurio.getX(), dinosaurio.getY(), Assets.dinosaurioRojoRunning7.getWidth(), Assets.dinosaurioRojoRunning7.getHeight());
 
         g.drawRect(window.getCanvas().getWidth() - 100, 0, 100, 40);
         g.drawString("Score: " + (int) gameState.getCurrentScore(), window.getCanvas().getWidth() - 80, 15);

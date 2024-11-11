@@ -13,7 +13,7 @@ public class Game extends Canvas implements Runnable {
     private int FONDO_X = 0;
     private int FONDO_INVERTIDO_X = 0;
     private int FONDO2_X = 0;
-    private int VELOCIDAD_FONDO = 8;
+    static int VELOCIDAD_FONDO = 8;
     private int DISTANCIA_RECORRIDA = 0;
     private KeyHandler keyHandler = new KeyHandler();
     private Dinosaurio dinosaurio = new Dinosaurio();
@@ -37,12 +37,12 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void definirFactory() {
-        if (STAGE == 0) {
-            obstacleFactory = new ForestFactory();
-        } else if (STAGE == 1) {
-            obstacleFactory = new ForestFactory();
-        } else if (STAGE == 2) {
-            obstacleFactory = new ForestFactory();
+        switch (STAGE) {
+            case 0 -> obstacleFactory = new ForestFactory();
+            case 1 -> obstacleFactory = new ForestFactory();
+            case 2 -> obstacleFactory = new ForestFactory();
+            default -> {
+            }
         }
     }
 

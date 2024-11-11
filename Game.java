@@ -39,8 +39,8 @@ public class Game extends Canvas implements Runnable {
     private void definirFactory() {
         switch (STAGE) {
             case 0 -> obstacleFactory = new ForestFactory();
-            case 1 -> obstacleFactory = new ForestFactory();
-            case 2 -> obstacleFactory = new ForestFactory();
+            case 1 -> obstacleFactory = new DesertFactory();
+            case 2 -> obstacleFactory = new SnowFactory();
             default -> {
             }
         }

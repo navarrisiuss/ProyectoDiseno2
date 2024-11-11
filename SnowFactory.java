@@ -1,11 +1,11 @@
-public class DesertFactory implements ObstacleFactory {
+public class SnowFactory implements ObstacleFactory {
     private String behaviorType;
 
-    public DesertFactory() {
+    public SnowFactory() {
         this.behaviorType = "traditional"; // Comportamiento predeterminado
     }
 
-    public DesertFactory(String behaviorType) {
+    public SnowFactory(String behaviorType) {
         this.behaviorType = behaviorType;
     }
 

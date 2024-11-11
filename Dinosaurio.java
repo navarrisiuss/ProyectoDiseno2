@@ -36,14 +36,6 @@ public class Dinosaurio {
         }
     }
 
-    public void render(Graphics g) {
-        g.drawImage(Assets.dinosaurio, DINOSAURIO_X, DINOSAURIO_Y, null);
-
-        // Draw hitbox
-        g.setColor(Color.RED);
-        g.drawRect(DINOSAURIO_X, DINOSAURIO_Y, Assets.dinosaurio.getWidth(), Assets.dinosaurio.getHeight());
-    }
-
     public int getX() {
         return DINOSAURIO_X;
     }
@@ -53,6 +45,6 @@ public class Dinosaurio {
     }
 
     public Rectangle getHitbox() {
-        return new Rectangle(DINOSAURIO_X, DINOSAURIO_Y, Assets.dinosaurio.getWidth(), Assets.dinosaurio.getHeight());
+        return new Rectangle(DINOSAURIO_X, DINOSAURIO_Y, Assets.dinosaurioRojoRunning7.getWidth(), Assets.dinosaurioRojoRunning7.getHeight());
     }
 }

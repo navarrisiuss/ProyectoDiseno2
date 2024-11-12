@@ -36,6 +36,11 @@ public class Dinosaurio {
         }
     }
 
+    public void freeze() {
+        VELOCIDAD_SALTO = 0;
+        GRAVEDAD = 0;
+    }
+
     public int getX() {
         return DINOSAURIO_X;
     }

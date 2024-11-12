@@ -95,11 +95,11 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void reset() {
-        System.out.println("Game Over");
         SEGUNDOS_TRANSCURRIDOS = 0;
         DISTANCIA_RECORRIDA = 0;
-        VELOCIDAD_FONDO = 8;
+        VELOCIDAD_FONDO = 0;
         gameState.setCurrentScore(0);
+        dinosaurio.freeze();
     }
 
     private void updateObstacles() {
@@ -187,13 +187,19 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void drawAnimations() {
+    private void drawAnimationsDinosaurio() {
         if (keyHandler.down) {
             drawDinosaurioCrouching();
         } else if (keyHandler.up) {
             drawDinosaurioJumping();
         } else {
             drawDinosaurioRunning();
+        }
+    }
+
+    private void drawShadow() {
+        if (dinosaurio.getY() != 500) {
+            g.drawImage(Assets.sombra, dinosaurio.getX() - 20, 490, this);
         }
     }
 
@@ -238,6 +244,17 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    private void drawDinosaurioDying() {
+        if (CONTADOR_SPRITE < 50) {
+            g.drawImage(Assets.dinosaurioRojoDying1, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else if (CONTADOR_SPRITE < 70) {
+            g.drawImage(Assets.dinosaurioRojoDying2, dinosaurio.getX(), dinosaurio.getY(), this);
+        } else {
+            g.drawImage(Assets.dinosaurioRojoDying1, dinosaurio.getX(), dinosaurio.getY(), this);
+            CONTADOR_SPRITE = 0;
+        }
+    }
+
     private void draw() {
         bs = window.getCanvas().getBufferStrategy();
         if (bs == null) {
@@ -253,7 +270,13 @@ public class Game extends Canvas implements Runnable {
 
         drawObstacles();
 
-        drawAnimations();
+        drawShadow();
+
+        if (checkCollision()) {
+            drawDinosaurioDying();
+        } else {
+            drawAnimationsDinosaurio();
+        }
 
 
         // Draw hitbox dinosaurio

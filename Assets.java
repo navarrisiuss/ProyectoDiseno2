@@ -17,6 +17,7 @@ public class Assets {
     public static BufferedImage dinosaurioRojoDying2;
     public static BufferedImage dinosaurioRojoCrouching1;
     public static BufferedImage dinosaurioRojoCrouching2;
+    public static BufferedImage sombra;
 
     public static BufferedImage cactus;
     public static BufferedImage bird;
@@ -38,5 +39,6 @@ public class Assets {
         dinosaurioRojoDying2 = Loader.loadImage("resources/dinosaurios/dinoRojoDying2.png");
         dinosaurioRojoCrouching1 = Loader.loadImage("resources/dinosaurios/dinoRojoCrouching1.png");
         dinosaurioRojoCrouching2 = Loader.loadImage("resources/dinosaurios/dinoRojoCrouching2.png");
+        sombra = Loader.loadImage("resources/sombra.png");
     }
 }

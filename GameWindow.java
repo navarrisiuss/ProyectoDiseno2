@@ -1,12 +1,10 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class GameWindow extends JFrame {
     private static final int ANCHO = 1280;
     private static final int ALTO = 720;
     private static final String TITULO = "DinoPessi";
-    private Canvas canvas;
-
 
     public GameWindow() {
         setSize(ANCHO, ALTO);
@@ -15,17 +13,18 @@ public class GameWindow extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
-
-        canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(ANCHO, ALTO));
-        canvas.setMaximumSize(new Dimension(ANCHO, ALTO));
-        canvas.setMinimumSize(new Dimension(ANCHO, ALTO));
-        canvas.setFocusable(true);
-
-        add(canvas);
     }
 
-    public Canvas getCanvas() {
-        return canvas;
+    public void setPanel(Canvas panel) {
+        getContentPane().removeAll(); // Elimina el contenido actual
+        add(panel); // Agrega el nuevo panel
+        revalidate();
+        repaint();
+
+        panel.requestFocusInWindow();
+
+        if (panel instanceof Game) {
+            ((Game) panel).start(); // Inicia el juego si el panel es una instancia de Game
+        }
     }
 }

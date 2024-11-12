@@ -44,7 +44,14 @@ public class Assets {
     public static BufferedImage dinosaurioAzulDying2;
     public static BufferedImage dinosaurioAzulCrouching1;
     public static BufferedImage dinosaurioAzulCrouching2;
-
+    public static BufferedImage birdForest1;
+    public static BufferedImage birdForest2;
+    public static BufferedImage birdForest3;
+    public static BufferedImage birdForest4;
+    public static BufferedImage birdForest5;
+    public static BufferedImage birdForest6;
+    public static BufferedImage birdForest7;
+    public static BufferedImage birdForest8;
     public static BufferedImage sombra;
 
     public static BufferedImage cactus;
@@ -96,6 +103,14 @@ public class Assets {
         dinosaurioAzulDying2 = Loader.loadImage("resources/dinosaurios/dinosaurioAzul/dinoAzulDying2.png");
         dinosaurioAzulCrouching1 = Loader.loadImage("resources/dinosaurios/dinosaurioAzul/dinoAzulCrouching1.png");
         dinosaurioAzulCrouching2 = Loader.loadImage("resources/dinosaurios/dinosaurioAzul/dinoAzulCrouching2.png");
+        birdForest1 = Loader.loadImage("resources/birdForest/birdForest1.png");
+        birdForest2 = Loader.loadImage("resources/birdForest/birdForest2.png");
+        birdForest3 = Loader.loadImage("resources/birdForest/birdForest3.png");
+        birdForest4 = Loader.loadImage("resources/birdForest/birdForest4.png");
+        birdForest5 = Loader.loadImage("resources/birdForest/birdForest5.png");
+        birdForest6 = Loader.loadImage("resources/birdForest/birdForest6.png");
+        birdForest7 = Loader.loadImage("resources/birdForest/birdForest7.png");
+        birdForest8 = Loader.loadImage("resources/birdForest/birdForest8.png");
         cactus = Loader.loadImage("resources/cactus.png");
         sombra = Loader.loadImage("resources/sombra.png");
     }

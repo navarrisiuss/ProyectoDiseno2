@@ -3,8 +3,8 @@ import java.awt.image.BufferedImage;
 
 public abstract class Cactus {
     public int x = Assets.fondoBosque.getWidth(); // Posición inicial en X
-    public int y = 600; // Posición inicial en Y
-    public BufferedImage image; // Imagen asociada al cactus
+    public int y = 580; // Posición inicial en Y
+    public static BufferedImage image; // Imagen asociada al cactus
     private ObstacleBehavior<Cactus> behavior; // Comportamiento del cactus
     private String type = "ground"; // Tipo de obstáculo ("ground" o "sky")
 
@@ -23,10 +23,6 @@ public abstract class Cactus {
     // Renderiza el cactus en la pantalla
     public void render(Graphics g) {
         g.drawImage(image, x, y, null);
-
-        // Dibuja la hitbox para depuración
-        g.setColor(Color.RED);
-        g.drawRect(x, y, image.getWidth(), image.getHeight());
     }
 
     // Obtiene la hitbox del cactus como un rectángulo
@@ -48,18 +44,8 @@ public abstract class Cactus {
     @Override
     public Cactus clone() {
         try {
-            Cactus cloned = (Cactus) super.clone();
-            cloned.image = new BufferedImage(
-                this.image.getWidth(),
-                this.image.getHeight(),
-                this.image.getType()
-            );
-            Graphics g = cloned.image.getGraphics();
-            g.drawImage(this.image, 0, 0, null);
-            g.dispose();
-            return cloned;
+            return (Cactus) super.clone();
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
             return null;
         }
     }

@@ -26,7 +26,7 @@ public class Game extends Canvas implements Runnable {
     private boolean cambioVelocidad = false;
     private boolean cambioObstaculo = false;
     private ObstacleFactory obstacleFactory;
-    private int STAGE = 2;
+    private int STAGE = 0;
     private double TIEMPO_ENTRE_OBSTACULOS = 0.75;
     private double ultimoObstaculo = 0;
     private ArrayList<Cactus> cactusList = new ArrayList<>();
@@ -36,6 +36,7 @@ public class Game extends Canvas implements Runnable {
     private int PTEROSAURIOS_SEGUIDOS = 0;
     private int CONTADOR_SPRITE = 0;
     private GameWindow gameWindow;
+    private int CORRECTOR_X_PTEROSAURIO = 1;
 
     public Game(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
@@ -66,7 +67,8 @@ public class Game extends Canvas implements Runnable {
                 fondo2 = Assets.fondoNieve;
                 dinosaurio.setVerde();
             }
-            default -> {}
+            default -> {
+            }
         }
     }
 
@@ -95,6 +97,7 @@ public class Game extends Canvas implements Runnable {
             } else {
                 Pterosaurio pterosaurio = tipoPterosaurio.clone();
                 pterosaurioList.add(pterosaurio);
+                PTEROSAURIOS_SEGUIDOS++;
             }
         }
     }
@@ -123,21 +126,26 @@ public class Game extends Canvas implements Runnable {
         VELOCIDAD_FONDO = 0;
         gameState.setCurrentScore(0);
         dinosaurio.freeze();
+        CORRECTOR_X_PTEROSAURIO = 0;
     }
 
     private void updateObstacles() {
         try {
-            for (Cactus cactus : cactusList) {
-                cactus.x -= VELOCIDAD_FONDO;
-                if (cactus.x + cactus.image.getWidth() < 0) {
-                    cactusList.remove(cactus);
+            if (cactusList.size() > 10) {
+                for (int i = 0; i < 5; i++) {
+                    cactusList.remove(cactusList.get(i));
                 }
             }
-            for (Pterosaurio pterosaurio : pterosaurioList) {
-                pterosaurio.x -= VELOCIDAD_FONDO;
-                if (pterosaurio.x + pterosaurio.image.getWidth() < 0) {
-                    pterosaurioList.remove(pterosaurio);
+            if (pterosaurioList.size() > 10) {
+                for (int i = 0; i < 5; i++) {
+                    pterosaurioList.remove(pterosaurioList.get(i));
                 }
+            }
+            for (Cactus cactus : cactusList) {
+                cactus.x -= VELOCIDAD_FONDO;
+            }
+            for (Pterosaurio pterosaurio : pterosaurioList) {
+                pterosaurio.x -= (VELOCIDAD_FONDO + CORRECTOR_X_PTEROSAURIO);
             }
         } catch (Exception e) {
             // Nada
@@ -180,14 +188,15 @@ public class Game extends Canvas implements Runnable {
     private void update() {
         updateVelocidad();
         updateBackground();
-        
+
         dinosaurio.update();
 
         if (checkCollision()) {
             gameOver();
+        } else {
+            updateMovement();
         }
 
-        updateMovement();
         updateObstacles();
         crearObstaculo();
 
@@ -202,11 +211,11 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void drawObstacles() {
-        for (Cactus cactus : cactusList) {
-            cactus.render(g);
-        }
-        for (Pterosaurio pterosaurio : pterosaurioList) {
-            pterosaurio.render(g);
+        if (STAGE == 0) {
+            for (Cactus cactus : cactusList) {
+                cactus.render(g);
+            }
+            drawBirdForest();
         }
     }
 
@@ -274,6 +283,29 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    private void drawBirdForest() {
+        for (Pterosaurio bird : pterosaurioList) {
+            if (CONTADOR_SPRITE < 10) {
+                g.drawImage(Assets.birdForest1, bird.x, bird.y, this);
+            } else if (CONTADOR_SPRITE < 20) {
+                g.drawImage(Assets.birdForest2, bird.x, bird.y, this);
+            } else if (CONTADOR_SPRITE < 30) {
+                g.drawImage(Assets.birdForest3, bird.x, bird.y, this);
+            } else if (CONTADOR_SPRITE < 40) {
+                g.drawImage(Assets.birdForest4, bird.x, bird.y, this);
+            } else if (CONTADOR_SPRITE < 50) {
+                g.drawImage(Assets.birdForest5, bird.x, bird.y, this);
+            } else if (CONTADOR_SPRITE < 60) {
+                g.drawImage(Assets.birdForest6, bird.x, bird.y, this);
+            } else if (CONTADOR_SPRITE < 70) {
+                g.drawImage(Assets.birdForest7, bird.x, bird.y, this);
+            } else {
+                g.drawImage(Assets.birdForest8, bird.x, bird.y, this);
+                CONTADOR_SPRITE = 0;
+            }
+        }
+    }
+
     private void draw() {
         bs = getBufferStrategy();
 
@@ -298,12 +330,11 @@ public class Game extends Canvas implements Runnable {
 
         drawObstacles();
 
-        // Draw hitbox dinosaurio
-        g.setColor(Color.RED);
-        g.drawRect(dinosaurio.getX(), dinosaurio.getY(), Assets.dinosaurioRojoRunning7.getWidth(), Assets.dinosaurioRojoRunning7.getHeight());
-        g.drawRect(getWidth() - 100, 0, 100, 40);
+        g.drawRect(getWidth() - 100, 0, 100, 60);
         g.drawString("Score: " + (int) gameState.getCurrentScore(), getWidth() - 80, 15);
-        g.drawString("Segundos: " + (int) SEGUNDOS_TRANSCURRIDOS, getWidth() - 80, 35);
+        g.drawString("Highscore: " + (int) gameState.getMaxScore(), getWidth() - 80, 35);
+        g.drawString("Segundos: " + (int) SEGUNDOS_TRANSCURRIDOS, getWidth() - 80, 55);
+
         // End drawing ---------------------------------------------------------------------------------
         g.dispose();
         bs.show();
@@ -342,8 +373,8 @@ public class Game extends Canvas implements Runnable {
 
             if (delta >= 1) {
                 SEGUNDOS_TRANSCURRIDOS += 1.0 / FPS;
-                draw();
                 update();
+                draw();
                 delta--;
             }
 

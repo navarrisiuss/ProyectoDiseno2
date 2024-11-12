@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Pterosaurio {
     public int x = Assets.fondoBosque.getWidth(); // Posición inicial en X
-    public int y = 300; // Posición inicial en Y
+    public int y = 350; // Posición inicial en Y
     public BufferedImage image; // Imagen asociada al pterosaurio
     private ObstacleBehavior<Pterosaurio> behavior; // Comportamiento del pterosaurio
     private String type = "sky"; // Tipo de obstáculo ("ground" o "sky")
@@ -23,10 +23,6 @@ public abstract class Pterosaurio {
     // Renderiza el pterosaurio en la pantalla
     public void render(Graphics g) {
         g.drawImage(image, x, y, null);
-
-        // Dibuja la hitbox para depuración
-        g.setColor(Color.RED);
-        g.drawRect(x, y, image.getWidth(), image.getHeight());
     }
 
     // Obtiene la hitbox del pterosaurio como un rectángulo
@@ -48,18 +44,8 @@ public abstract class Pterosaurio {
     @Override
     public Pterosaurio clone() {
         try {
-            Pterosaurio cloned = (Pterosaurio) super.clone();
-            cloned.image = new BufferedImage(
-                this.image.getWidth(),
-                this.image.getHeight(),
-                this.image.getType()
-            );
-            Graphics g = cloned.image.getGraphics();
-            g.drawImage(this.image, 0, 0, null);
-            g.dispose();
-            return cloned;
+            return (Pterosaurio) super.clone();
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
             return null;
         }
     }

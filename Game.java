@@ -26,7 +26,7 @@ public class Game extends Canvas implements Runnable {
     private boolean cambioVelocidad = false;
     private boolean cambioObstaculo = false;
     private ObstacleFactory obstacleFactory;
-    private int STAGE = 0;
+    private int STAGE = 2;
     private double TIEMPO_ENTRE_OBSTACULOS = 0.75;
     private double ultimoObstaculo = 0;
     private ArrayList<Cactus> cactusList = new ArrayList<>();
@@ -50,18 +50,21 @@ public class Game extends Canvas implements Runnable {
                 fondo = Assets.fondoBosque;
                 fondoInvertido = Assets.fondoBosqueInvertido;
                 fondo2 = Assets.fondoBosque;
-                dinosaurio.setRojo();
+                dinosaurio.setAzul();
             }
             case 1 -> {
-                obstacleFactory = new DesertFactory();
+                obstacleFactory = new ForestFactory();
                 fondo = Assets.fondoDesierto;
                 fondoInvertido = Assets.fondoDesiertoInvertido;
                 fondo2 = Assets.fondoDesierto;
-                dinosaurio.setVerde();
+                dinosaurio.setRojo();
             }
             case 2 -> {
                 obstacleFactory = new ForestFactory();
-                dinosaurio.setAzul();
+                fondo = Assets.fondoNieve;
+                fondoInvertido = Assets.fondoNieveInvertido;
+                fondo2 = Assets.fondoNieve;
+                dinosaurio.setVerde();
             }
             default -> {}
         }
@@ -177,15 +180,15 @@ public class Game extends Canvas implements Runnable {
     private void update() {
         updateVelocidad();
         updateBackground();
-        updateMovement();
-        updateObstacles();
-
+        
         dinosaurio.update();
 
         if (checkCollision()) {
             gameOver();
         }
 
+        updateMovement();
+        updateObstacles();
         crearObstaculo();
 
         gameState.setCurrentScore(DISTANCIA_RECORRIDA / 100);
@@ -210,7 +213,7 @@ public class Game extends Canvas implements Runnable {
     private void drawAnimationsDinosaurio() {
         if (keyHandler.down) {
             drawDinosaurioCrouching();
-        } else if (dinosaurio.getY() != 500) {
+        } else if (dinosaurio.getY() != dinosaurio.ALTURA_SUELO) {
             drawDinosaurioJumping();
         } else {
             drawDinosaurioRunning();
@@ -218,7 +221,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void drawShadow() {
-        g.drawImage(Assets.sombra, dinosaurio.getX() - 20, 490, this);
+        g.drawImage(Assets.sombra, dinosaurio.getX() - 20, dinosaurio.ALTURA_SUELO - 10, this);
     }
 
     private void drawDinosaurioRunning() {
@@ -285,8 +288,6 @@ public class Game extends Canvas implements Runnable {
         // Draw here ----------------------------------------------------------------------------------
         drawBackground();
 
-        drawObstacles();
-
         drawShadow();
 
         if (checkCollision()) {
@@ -295,6 +296,7 @@ public class Game extends Canvas implements Runnable {
             drawAnimationsDinosaurio();
         }
 
+        drawObstacles();
 
         // Draw hitbox dinosaurio
         g.setColor(Color.RED);

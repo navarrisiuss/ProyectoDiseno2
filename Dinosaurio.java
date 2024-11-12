@@ -3,7 +3,8 @@ import java.awt.image.BufferedImage;
 
 public class Dinosaurio {
     private int DINOSAURIO_X = 100;
-    private int DINOSAURIO_Y = 500;
+    public int ALTURA_SUELO = 600;
+    private int DINOSAURIO_Y = ALTURA_SUELO;
     private int VELOCIDAD_SALTO = 15;
     private int GRAVEDAD = 1;
     private int SALTO = -20;
@@ -73,14 +74,14 @@ public class Dinosaurio {
         VELOCIDAD_SALTO += GRAVEDAD;
         DINOSAURIO_Y += VELOCIDAD_SALTO;
 
-        if (DINOSAURIO_Y > 500) {
-            DINOSAURIO_Y = 500;
+        if (DINOSAURIO_Y > ALTURA_SUELO) {
+            DINOSAURIO_Y = ALTURA_SUELO;
             VELOCIDAD_SALTO = 0;
         }
     }
 
     public void saltar() {
-        if (DINOSAURIO_Y == 500) {
+        if (DINOSAURIO_Y == ALTURA_SUELO) {
             VELOCIDAD_SALTO = SALTO;
         }
     }
@@ -88,8 +89,8 @@ public class Dinosaurio {
     public void agacharse() {
         DINOSAURIO_Y += 25;
 
-        if (DINOSAURIO_Y > 500) {
-            DINOSAURIO_Y = 500;
+        if (DINOSAURIO_Y > ALTURA_SUELO) {
+            DINOSAURIO_Y = ALTURA_SUELO;
             VELOCIDAD_SALTO = 0;
         }
     }

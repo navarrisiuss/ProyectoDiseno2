@@ -5,6 +5,8 @@ public class Assets {
     public static BufferedImage fondoBosqueInvertido;
     public static BufferedImage fondoDesierto;
     public static BufferedImage fondoDesiertoInvertido;
+    public static BufferedImage fondoNieve;
+    public static BufferedImage fondoNieveInvertido;
     public static BufferedImage dinosaurio;
     public static BufferedImage dinosaurioRojoRunning1;
     public static BufferedImage dinosaurioRojoRunning2;
@@ -56,6 +58,8 @@ public class Assets {
         fondoBosqueInvertido = Loader.loadImage("resources/fondoBosqueInvertido.png");
         fondoDesierto = Loader.loadImage("resources/fondoDesierto.png");
         fondoDesiertoInvertido = Loader.loadImage("resources/fondoDesiertoInvertido.png");
+        fondoNieve = Loader.loadImage("resources/fondoNieve.png");
+        fondoNieveInvertido = Loader.loadImage("resources/fondoNieveInvertido.png");
         dinosaurioRojoRunning1 = Loader.loadImage("resources/dinosaurios/dinosaurioRojo/dinoRojoRunning1.png");
         dinosaurioRojoRunning2 = Loader.loadImage("resources/dinosaurios/dinosaurioRojo/dinoRojoRunning2.png");
         dinosaurioRojoRunning3 = Loader.loadImage("resources/dinosaurios/dinosaurioRojo/dinoRojoRunning3.png");

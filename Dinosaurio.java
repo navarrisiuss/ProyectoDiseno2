@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Dinosaurio {
     private int DINOSAURIO_X = 100;
@@ -6,8 +7,39 @@ public class Dinosaurio {
     private int VELOCIDAD_SALTO = 15;
     private int GRAVEDAD = 1;
     private int SALTO = -25;
+    public BufferedImage dinosaurioRunning1;
+    public BufferedImage dinosaurioRunning2;
+    public BufferedImage dinosaurioRunning3;
+    public BufferedImage dinosaurioRunning4;
+    public BufferedImage dinosaurioRunning5;
+    public BufferedImage dinosaurioRunning6;
+    public BufferedImage dinosaurioRunning7;
+    public BufferedImage dinosaurioJumping;
+    public BufferedImage dinosaurioDying1;
+    public BufferedImage dinosaurioDying2;
+    public BufferedImage dinosaurioCrouching1;
+    public BufferedImage dinosaurioCrouching2;
 
     public Dinosaurio() {
+
+    }
+
+    public void setRojo() {
+        dinosaurioRunning1 = Assets.dinosaurioRojoRunning1;
+        dinosaurioRunning2 = Assets.dinosaurioRojoRunning2;
+        dinosaurioRunning3 = Assets.dinosaurioRojoRunning3;
+        dinosaurioRunning4 = Assets.dinosaurioRojoRunning4;
+        dinosaurioRunning5 = Assets.dinosaurioRojoRunning5;
+        dinosaurioRunning6 = Assets.dinosaurioRojoRunning6;
+        dinosaurioRunning7 = Assets.dinosaurioRojoRunning7;
+        dinosaurioJumping = Assets.dinosaurioRojoJumping;
+        dinosaurioDying1 = Assets.dinosaurioRojoDying1;
+        dinosaurioDying2 = Assets.dinosaurioRojoDying2;
+        dinosaurioCrouching1 = Assets.dinosaurioRojoCrouching1;
+        dinosaurioCrouching2 = Assets.dinosaurioRojoCrouching2;
+    }
+
+    public void setVerde() {
 
     }
 

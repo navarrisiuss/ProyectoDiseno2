@@ -39,8 +39,11 @@ public class Game extends Canvas implements Runnable {
 
     private void definirFactory() {
         switch (STAGE) {
-            case 0 -> obstacleFactory = new ForestFactory();
-            case 1 -> obstacleFactory = new ForestFactory();
+            case 0 -> {
+                obstacleFactory = new ForestFactory();
+                dinosaurio.setRojo();
+            }
+            case 1 -> obstacleFactory = new DesertFactory();
             case 2 -> obstacleFactory = new ForestFactory();
             default -> {
             }
@@ -190,7 +193,7 @@ public class Game extends Canvas implements Runnable {
     private void drawAnimationsDinosaurio() {
         if (keyHandler.down) {
             drawDinosaurioCrouching();
-        } else if (keyHandler.up) {
+        } else if (dinosaurio.getY() != 500) {
             drawDinosaurioJumping();
         } else {
             drawDinosaurioRunning();
@@ -205,52 +208,50 @@ public class Game extends Canvas implements Runnable {
 
     private void drawDinosaurioRunning() {
         if (CONTADOR_SPRITE < 10) {
-            g.drawImage(Assets.dinosaurioRojoRunning1, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioRunning1, dinosaurio.getX(), dinosaurio.getY(), this);
         } else if (CONTADOR_SPRITE < 20) {
-            g.drawImage(Assets.dinosaurioRojoRunning2, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioRunning2, dinosaurio.getX(), dinosaurio.getY(), this);
         } else if (CONTADOR_SPRITE < 30) {
-            g.drawImage(Assets.dinosaurioRojoRunning3, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioRunning3, dinosaurio.getX(), dinosaurio.getY(), this);
         } else if (CONTADOR_SPRITE < 40) {
-            g.drawImage(Assets.dinosaurioRojoRunning4, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioRunning4, dinosaurio.getX(), dinosaurio.getY(), this);
         } else if (CONTADOR_SPRITE < 50) {
-            g.drawImage(Assets.dinosaurioRojoRunning5, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioRunning5, dinosaurio.getX(), dinosaurio.getY(), this);
         } else if (CONTADOR_SPRITE < 60) {
-            g.drawImage(Assets.dinosaurioRojoRunning6, dinosaurio.getX(), dinosaurio.getY(), this);
-        } else if (CONTADOR_SPRITE < 70) {
-            g.drawImage(Assets.dinosaurioRojoRunning7, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioRunning6, dinosaurio.getX(), dinosaurio.getY(), this);
         } else {
-            g.drawImage(Assets.dinosaurioRojoRunning1, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioRunning7, dinosaurio.getX(), dinosaurio.getY(), this);
             CONTADOR_SPRITE = 0;
         }
     }
 
     private void drawDinosaurioJumping() {
         if (CONTADOR_SPRITE < 10) {
-            g.drawImage(Assets.dinosaurioRojoJumping1, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioJumping, dinosaurio.getX(), dinosaurio.getY(), this);
         } else {
-            g.drawImage(Assets.dinosaurioRojoJumping1, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioJumping, dinosaurio.getX(), dinosaurio.getY(), this);
             CONTADOR_SPRITE = 0;
         }
     }
 
     private void drawDinosaurioCrouching() {
         if (CONTADOR_SPRITE < 10) {
-            g.drawImage(Assets.dinosaurioRojoCrouching1, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioCrouching1, dinosaurio.getX(), dinosaurio.getY(), this);
         } else if (CONTADOR_SPRITE < 20) {
-            g.drawImage(Assets.dinosaurioRojoCrouching2, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioCrouching2, dinosaurio.getX(), dinosaurio.getY(), this);
         } else {
-            g.drawImage(Assets.dinosaurioRojoCrouching1, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioCrouching1, dinosaurio.getX(), dinosaurio.getY(), this);
             CONTADOR_SPRITE = 0;
         }
     }
 
     private void drawDinosaurioDying() {
         if (CONTADOR_SPRITE < 50) {
-            g.drawImage(Assets.dinosaurioRojoDying1, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioDying1, dinosaurio.getX(), dinosaurio.getY(), this);
         } else if (CONTADOR_SPRITE < 70) {
-            g.drawImage(Assets.dinosaurioRojoDying2, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioDying2, dinosaurio.getX(), dinosaurio.getY(), this);
         } else {
-            g.drawImage(Assets.dinosaurioRojoDying1, dinosaurio.getX(), dinosaurio.getY(), this);
+            g.drawImage(dinosaurio.dinosaurioDying1, dinosaurio.getX(), dinosaurio.getY(), this);
             CONTADOR_SPRITE = 0;
         }
     }

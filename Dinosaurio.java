@@ -40,7 +40,33 @@ public class Dinosaurio {
     }
 
     public void setVerde() {
+        dinosaurioRunning1 = Assets.dinosaurioVerdeRunning1;
+        dinosaurioRunning2 = Assets.dinosaurioVerdeRunning2;
+        dinosaurioRunning3 = Assets.dinosaurioVerdeRunning3;
+        dinosaurioRunning4 = Assets.dinosaurioVerdeRunning4;
+        dinosaurioRunning5 = Assets.dinosaurioVerdeRunning5;
+        dinosaurioRunning6 = Assets.dinosaurioVerdeRunning6;
+        dinosaurioRunning7 = Assets.dinosaurioVerdeRunning7;
+        dinosaurioJumping = Assets.dinosaurioVerdeJumping;
+        dinosaurioDying1 = Assets.dinosaurioVerdeDying1;
+        dinosaurioDying2 = Assets.dinosaurioVerdeDying2;
+        dinosaurioCrouching1 = Assets.dinosaurioVerdeCrouching1;
+        dinosaurioCrouching2 = Assets.dinosaurioVerdeCrouching2;
+    }
 
+    public void setAzul() {
+        dinosaurioRunning1 = Assets.dinosaurioAzulRunning1;
+        dinosaurioRunning2 = Assets.dinosaurioAzulRunning2;
+        dinosaurioRunning3 = Assets.dinosaurioAzulRunning3;
+        dinosaurioRunning4 = Assets.dinosaurioAzulRunning4;
+        dinosaurioRunning5 = Assets.dinosaurioAzulRunning5;
+        dinosaurioRunning6 = Assets.dinosaurioAzulRunning6;
+        dinosaurioRunning7 = Assets.dinosaurioAzulRunning7;
+        dinosaurioJumping = Assets.dinosaurioAzulJumping;
+        dinosaurioDying1 = Assets.dinosaurioAzulDying1;
+        dinosaurioDying2 = Assets.dinosaurioAzulDying2;
+        dinosaurioCrouching1 = Assets.dinosaurioAzulCrouching1;
+        dinosaurioCrouching2 = Assets.dinosaurioAzulCrouching2;
     }
 
     public void update() {

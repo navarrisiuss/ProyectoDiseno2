@@ -51,6 +51,7 @@ public class Game extends Canvas implements Runnable {
             }
             case 2 -> {
                 obstacleFactory = new ForestFactory();
+                dinosaurio.setAzul();
             }
             default -> {}
         }

@@ -6,7 +6,7 @@ public class Dinosaurio {
     private int DINOSAURIO_Y = 500;
     private int VELOCIDAD_SALTO = 15;
     private int GRAVEDAD = 1;
-    private int SALTO = -25;
+    private int SALTO = -20;
     public BufferedImage dinosaurioRunning1;
     public BufferedImage dinosaurioRunning2;
     public BufferedImage dinosaurioRunning3;

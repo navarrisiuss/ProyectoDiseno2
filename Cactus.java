@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Cactus {
     public int x = Assets.fondoBosque.getWidth(); // Posición inicial en X
-    public int y = 500 + 64 / 2; // Posición inicial en Y
+    public int y = 500 + 10; // Posición inicial en Y
     public BufferedImage image; // Imagen asociada al cactus
     private ObstacleBehavior<Cactus> behavior; // Comportamiento del cactus
     private String type = "ground"; // Tipo de obstáculo ("ground" o "sky")

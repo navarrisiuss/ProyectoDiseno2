@@ -20,6 +20,8 @@ public class Assets {
 
     public static BufferedImage cactus;
     public static BufferedImage bird;
+    public static BufferedImage speed1;
+    public static BufferedImage speed2;
 
 
     public static void init() {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Game extends Canvas implements Runnable {
     private static GameWindow window;
+    private static Image gameIcon = Toolkit.getDefaultToolkit().getImage("resources/dinosaurios/dinosaurioRojo/dinoRojoDefault.png");
     private Thread thread;
     private boolean running = false;
     private BufferStrategy bs;
@@ -35,6 +36,7 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         window = new GameWindow();
         window.getCanvas().addKeyListener(keyHandler);
+        window.setIconImage(gameIcon);
     }
 
     private void definirFactory() {
@@ -43,10 +45,14 @@ public class Game extends Canvas implements Runnable {
                 obstacleFactory = new ForestFactory();
                 dinosaurio.setRojo();
             }
-            case 1 -> obstacleFactory = new DesertFactory();
-            case 2 -> obstacleFactory = new ForestFactory();
-            default -> {
+            case 1 -> {
+                obstacleFactory = new DesertFactory();
+                dinosaurio.setVerde();
             }
+            case 2 -> {
+                obstacleFactory = new ForestFactory();
+            }
+            default -> {}
         }
     }
 

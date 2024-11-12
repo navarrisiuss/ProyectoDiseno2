@@ -10,6 +10,7 @@ public class GameMain extends Canvas {
     private Rectangle button2Bounds; // Área del botón "Opciones"
     private Rectangle button3Bounds; // Área del botón "Salir"
     private GameWindow gameWindow; // Referencia al GameWindow
+    private static Image gameIcon = Toolkit.getDefaultToolkit().getImage("resources/dinosaurios/dinosaurioRojo/dinoRojoDefault.png");
 
     public GameMain(GameWindow gameWindow) {
         this.gameWindow = gameWindow; // Guarda la referencia del GameWindow
@@ -88,5 +89,6 @@ public class GameMain extends Canvas {
         GameWindow gameWindow = new GameWindow(); // Crear instancia de GameWindow
         GameMain gameMain = new GameMain(gameWindow);
         gameWindow.setPanel(gameMain); // Muestra el menú principal
+        gameWindow.setIconImage(gameIcon);
     }
 }

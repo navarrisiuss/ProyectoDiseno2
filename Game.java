@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Game extends Canvas implements Runnable {
     private static GameWindow window;
-    private static Image gameIcon = Toolkit.getDefaultToolkit().getImage("resources/dinosaurios/dinosaurioRojo/dinoRojoDefault.png");
     private Thread thread;
     private boolean running = false;
     private BufferStrategy bs;
@@ -38,7 +37,6 @@ public class Game extends Canvas implements Runnable {
         this.gameWindow = gameWindow;
         setBackground(Color.BLACK);
         addKeyListener(keyHandler);
-        window.setIconImage(gameIcon);
     }
 
     private void definirFactory() {
@@ -210,9 +208,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void drawShadow() {
-        if (dinosaurio.getY() != 500) {
-            g.drawImage(Assets.sombra, dinosaurio.getX() - 20, 490, this);
-        }
+        g.drawImage(Assets.sombra, dinosaurio.getX() - 20, 490, this);
     }
 
     private void drawDinosaurioRunning() {

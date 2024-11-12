@@ -1,11 +1,15 @@
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Game extends Canvas implements Runnable {
     private static GameWindow window;
     private Thread thread;
     private boolean running = false;
+    private static BufferedImage fondo;
+    private static BufferedImage fondoInvertido;
+    private static BufferedImage fondo2;
     private BufferStrategy bs;
     private Graphics g;
     private final int FPS = 60;
@@ -43,10 +47,16 @@ public class Game extends Canvas implements Runnable {
         switch (STAGE) {
             case 0 -> {
                 obstacleFactory = new ForestFactory();
+                fondo = Assets.fondoBosque;
+                fondoInvertido = Assets.fondoBosqueInvertido;
+                fondo2 = Assets.fondoBosque;
                 dinosaurio.setRojo();
             }
             case 1 -> {
                 obstacleFactory = new DesertFactory();
+                fondo = Assets.fondoDesierto;
+                fondoInvertido = Assets.fondoDesiertoInvertido;
+                fondo2 = Assets.fondoDesierto;
                 dinosaurio.setVerde();
             }
             case 2 -> {
@@ -183,9 +193,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void drawBackground() {
-        g.drawImage(Assets.fondoBosque, FONDO_X, 0, this);
-        g.drawImage(Assets.fondoBosqueInvertido, FONDO_INVERTIDO_X, 0, this);
-        g.drawImage(Assets.fondoBosque, FONDO2_X, 0, this);
+        g.drawImage(fondo, FONDO_X, 0, this);
+        g.drawImage(fondoInvertido, FONDO_INVERTIDO_X, 0, this);
+        g.drawImage(fondo2, FONDO2_X, 0, this);
     }
 
     private void drawObstacles() {

@@ -31,10 +31,12 @@ public class Game extends Canvas implements Runnable {
     private Pterosaurio tipoPterosaurio;
     private int PTEROSAURIOS_SEGUIDOS = 0;
     private int CONTADOR_SPRITE = 0;
+    private GameWindow gameWindow;
 
-    public Game() {
-        window = new GameWindow();
-        window.getCanvas().addKeyListener(keyHandler);
+    public Game(GameWindow gameWindow) {
+        this.gameWindow = gameWindow;
+        setBackground(Color.BLACK);
+        addKeyListener(keyHandler);
     }
 
     private void definirFactory() {
@@ -239,15 +241,16 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void draw() {
-        bs = window.getCanvas().getBufferStrategy();
+        bs = getBufferStrategy();
+
         if (bs == null) {
-            window.getCanvas().createBufferStrategy(3);
+            createBufferStrategy(3);
             return;
         }
 
         g = bs.getDrawGraphics();
         // Clear screen
-        g.clearRect(0, 0, window.getCanvas().getWidth(), window.getCanvas().getHeight());
+        g.clearRect(0, 0, getWidth(), getHeight());
         // Draw here ----------------------------------------------------------------------------------
         drawBackground();
 
@@ -259,17 +262,15 @@ public class Game extends Canvas implements Runnable {
         // Draw hitbox dinosaurio
         g.setColor(Color.RED);
         g.drawRect(dinosaurio.getX(), dinosaurio.getY(), Assets.dinosaurioRojoRunning7.getWidth(), Assets.dinosaurioRojoRunning7.getHeight());
-
-        g.drawRect(window.getCanvas().getWidth() - 100, 0, 100, 40);
-        g.drawString("Score: " + (int) gameState.getCurrentScore(), window.getCanvas().getWidth() - 80, 15);
-        g.drawString("Segundos: " + (int) SEGUNDOS_TRANSCURRIDOS, window.getCanvas().getWidth() - 80, 35);
-
+        g.drawRect(getWidth() - 100, 0, 100, 40);
+        g.drawString("Score: " + (int) gameState.getCurrentScore(), getWidth() - 80, 15);
+        g.drawString("Segundos: " + (int) SEGUNDOS_TRANSCURRIDOS, getWidth() - 80, 35);
         // End drawing ---------------------------------------------------------------------------------
         g.dispose();
         bs.show();
     }
 
-    private void start() {
+    void start() {
         running = true;
 
         thread = new Thread(this);
@@ -317,8 +318,7 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.start();
+    public void returnToMenu() {
+        gameWindow.setPanel(new GameMain(gameWindow)); // Cambia al menú principal
     }
 }

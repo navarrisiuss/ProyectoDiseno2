@@ -1,13 +1,13 @@
 import java.awt.image.BufferedImage;
 
 public class Assets {
+    public static BufferedImage fondoGameOver;
     public static BufferedImage fondoBosque;
     public static BufferedImage fondoBosqueInvertido;
     public static BufferedImage fondoDesierto;
     public static BufferedImage fondoDesiertoInvertido;
     public static BufferedImage fondoNieve;
     public static BufferedImage fondoNieveInvertido;
-    public static BufferedImage dinosaurio;
     public static BufferedImage dinosaurioRojoRunning1;
     public static BufferedImage dinosaurioRojoRunning2;
     public static BufferedImage dinosaurioRojoRunning3;
@@ -61,6 +61,7 @@ public class Assets {
 
 
     public static void init() {
+        fondoGameOver = Loader.loadImage("resources/fondoGameover.png");
         fondoBosque = Loader.loadImage("resources/fondoBosque.png");
         fondoBosqueInvertido = Loader.loadImage("resources/fondoBosqueInvertido.png");
         fondoDesierto = Loader.loadImage("resources/fondoDesierto.png");

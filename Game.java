@@ -321,16 +321,24 @@ public class Game extends Canvas implements Runnable {
 
         if (checkCollision()) {
             drawDinosaurioDying();
+            g.setColor(Color.RED);
+            g.setFont(new Font("Arial", Font.BOLD, 50));
+            g.drawString("GAME OVER", getWidth() / 2 - 150, getHeight() / 2);
+            g.setFont(new Font("Arial", Font.BOLD, 20));
+            g.drawString("Presiona cualquier tecla para volver al menú", getWidth() / 2 - 200, getHeight() / 2 + 50);
+            if (keyHandler.any) {
+                returnToMenu();
+            }
         } else {
             drawAnimationsDinosaurio();
         }
 
         drawObstacles();
 
-        g.drawRect(getWidth() - 100, 0, 100, 60);
-        g.drawString("Score: " + (int) gameState.getCurrentScore(), getWidth() - 80, 15);
-        g.drawString("Highscore: " + (int) gameState.getMaxScore(), getWidth() - 80, 35);
-        g.drawString("Segundos: " + (int) SEGUNDOS_TRANSCURRIDOS, getWidth() - 80, 55);
+        g.drawRect(getWidth() - 200, 0, 200, 60);
+        g.drawString("Score: " + (int) gameState.getCurrentScore(), getWidth() - 180, 15);
+        g.drawString("Highscore: " + (int) gameState.getMaxScore(), getWidth() - 180, 35);
+        g.drawString("Segundos: " + (int) SEGUNDOS_TRANSCURRIDOS, getWidth() - 180, 55);
 
         // End drawing ---------------------------------------------------------------------------------
         g.dispose();

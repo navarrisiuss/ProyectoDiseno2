@@ -4,6 +4,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
     public boolean up;
     public boolean down;
+    public boolean any;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -20,6 +21,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_KP_DOWN || code == KeyEvent.VK_S) {
             down = true;
         }
+
+        // Cualquier tecla presionada
+        any = true;
     }
 
     @Override
@@ -32,5 +36,8 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_KP_DOWN || code == KeyEvent.VK_S) {
             down = false;
         }
+
+        // Cualquier tecla liberada
+        any = false;
     }
 }

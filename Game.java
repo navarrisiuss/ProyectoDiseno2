@@ -27,7 +27,6 @@ public class Game extends Canvas implements Runnable {
     private boolean cambioObstaculo = false;
     private ObstacleFactory obstacleFactory;
     private double TIEMPO_ENTRE_OBSTACULOS = 0.75;
-    private double ultimoObstaculo = 0;
     private ArrayList<Cactus> cactusList = new ArrayList<>();
     private ArrayList<Pterosaurio> pterosaurioList = new ArrayList<>();
     private Cactus tipoCactus;
@@ -36,6 +35,7 @@ public class Game extends Canvas implements Runnable {
     private int CONTADOR_SPRITE = 0;
     private GameWindow gameWindow;
     private int CORRECTOR_X_PTEROSAURIO = 1;
+    private Strategy strategy;
 
     public Game(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
@@ -76,6 +76,16 @@ public class Game extends Canvas implements Runnable {
         definirFactory();
         definirCactus();
         definirPterosaurio();
+        definirStrategy();
+    }
+
+    private void definirStrategy() {
+        switch (GameState.getInstance().getSTRATEGY()) {
+            case 0 -> strategy = new TradicionalStrategy();
+            case 1 -> strategy = new DinamicoStrategy();
+            default -> {
+            }
+        }
     }
 
     private void definirCactus() {
@@ -87,18 +97,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void crearObstaculo() {
-        if (SEGUNDOS_TRANSCURRIDOS - ultimoObstaculo >= TIEMPO_ENTRE_OBSTACULOS) {
-            ultimoObstaculo = SEGUNDOS_TRANSCURRIDOS;
-            if (Math.random() < 0.5 || PTEROSAURIOS_SEGUIDOS >= 2) {
-                Cactus cactus = tipoCactus.clone();
-                cactusList.add(cactus);
-                PTEROSAURIOS_SEGUIDOS = 0;
-            } else {
-                Pterosaurio pterosaurio = tipoPterosaurio.clone();
-                pterosaurioList.add(pterosaurio);
-                PTEROSAURIOS_SEGUIDOS++;
-            }
-        }
+        strategy.execute(SEGUNDOS_TRANSCURRIDOS, TIEMPO_ENTRE_OBSTACULOS,
+                PTEROSAURIOS_SEGUIDOS, tipoCactus, cactusList, tipoPterosaurio, pterosaurioList);
     }
 
     private boolean checkCollision() {

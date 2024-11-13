@@ -55,12 +55,12 @@ public class Modo extends Canvas {
     // Métodos para manejar clics en los botones
     private void onButton1Click() {
         System.out.println("Botón 1 clicado: modo tradicional");
-        
+        GameState.getInstance().setSTRATEGY(0);
     }
 
     private void onButton2Click() {
         System.out.println("Botón 2 clicado: modo dinamico");
-        
+        GameState.getInstance().setSTRATEGY(1);
     }
 
     private void onButton3Click() {

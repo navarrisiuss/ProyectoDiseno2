@@ -15,8 +15,8 @@ public class Modo extends Canvas {
         modoImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("resources/modo.png"));
 
         // Define las áreas de los botones
-        button1Bounds = new Rectangle(220, 150, 245, 370);
-        button2Bounds = new Rectangle(510, 150, 245, 370);
+        button1Bounds = new Rectangle(360, 450, 150, 80);
+        button2Bounds = new Rectangle(720, 450, 150, 80);
         button3Bounds = new Rectangle(550, 550, 170, 80);
 
         // Agrega un MouseListener para manejar los clics
@@ -54,13 +54,13 @@ public class Modo extends Canvas {
 
     // Métodos para manejar clics en los botones
     private void onButton1Click() {
-        System.out.println("Botón 1 clicado: tema Forest");
-        GameState.getInstance().setSTAGE(0);
+        System.out.println("Botón 1 clicado: modo tradicional");
+        
     }
 
     private void onButton2Click() {
-        System.out.println("Botón 2 clicado: tema Desert");
-        GameState.getInstance().setSTAGE(1);
+        System.out.println("Botón 2 clicado: modo dinamico");
+        
     }
 
     private void onButton3Click() {

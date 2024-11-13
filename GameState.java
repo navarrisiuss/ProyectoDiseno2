@@ -3,6 +3,7 @@ public class GameState {
     private int currentScore;
     private int maxScore;
     private boolean isGameActive;
+    private int STAGE;
 
     private GameState() {
         currentScore = 0;
@@ -43,5 +44,13 @@ public class GameState {
 
     public void endGame() {
         isGameActive = false;
+    }
+
+    public int getSTAGE() {
+        return STAGE;
+    }
+
+    public void setSTAGE(int STAGE) {
+        this.STAGE = STAGE;
     }
 }

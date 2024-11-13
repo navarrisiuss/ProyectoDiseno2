@@ -26,7 +26,6 @@ public class Game extends Canvas implements Runnable {
     private boolean cambioVelocidad = false;
     private boolean cambioObstaculo = false;
     private ObstacleFactory obstacleFactory;
-    private int STAGE = 0;
     private double TIEMPO_ENTRE_OBSTACULOS = 0.75;
     private double ultimoObstaculo = 0;
     private ArrayList<Cactus> cactusList = new ArrayList<>();
@@ -45,7 +44,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void definirFactory() {
-        switch (STAGE) {
+        switch (GameState.getInstance().getSTAGE()) {
             case 0 -> {
                 obstacleFactory = new ForestFactory();
                 fondo = Assets.fondoBosque;
@@ -211,7 +210,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void drawObstacles() {
-        if (STAGE == 0) {
+        if (GameState.getInstance().getSTAGE() == 0) {
             for (Cactus cactus : cactusList) {
                 cactus.render(g);
             }

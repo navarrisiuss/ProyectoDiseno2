@@ -76,7 +76,7 @@ public class GameMain extends Canvas {
 
     private void onButton2Click() {
         System.out.println("Botón 2 clicado: Opciones");
-        // Lógica para mostrar opciones
+        gameWindow.setPanel(new Temas(gameWindow)); // Cambia al panel de opciones
     }
 
     private void onButton3Click() {

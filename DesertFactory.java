@@ -2,11 +2,11 @@ public class DesertFactory implements ObstacleFactory{
 
     @Override
     public Cactus createCactus() {
-        return null;
+        return new DesertCactus();
     }
 
     @Override
     public Pterosaurio createPterosaurio() {
-        return null;
+        return new DesertPterosaurio();
     }
 }

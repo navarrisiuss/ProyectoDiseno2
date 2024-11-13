@@ -20,6 +20,8 @@ public abstract class Cactus {
         }
     }
 
+    public abstract Cactus clone();
+
     // Renderiza el cactus en la pantalla
     public void render(Graphics g) {
         g.drawImage(image, x, y, null);
@@ -39,17 +41,6 @@ public abstract class Cactus {
     public String getType() {
         return type;
     }
-
-    // Implementa el método clone para duplicar el objeto
-    @Override
-    public Cactus clone() {
-        try {
-            return (Cactus) super.clone();
-        } catch (CloneNotSupportedException e) {
-            return null;
-        }
-    }
-
 
     public int getX() {
         return this.x;

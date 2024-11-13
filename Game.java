@@ -53,14 +53,14 @@ public class Game extends Canvas implements Runnable {
                 dinosaurio.setAzul();
             }
             case 1 -> {
-                obstacleFactory = new ForestFactory();
+                obstacleFactory = new DesertFactory();
                 fondo = Assets.fondoDesierto;
                 fondoInvertido = Assets.fondoDesiertoInvertido;
                 fondo2 = Assets.fondoDesierto;
                 dinosaurio.setRojo();
             }
             case 2 -> {
-                obstacleFactory = new ForestFactory();
+                obstacleFactory = new SnowFactory();
                 fondo = Assets.fondoNieve;
                 fondoInvertido = Assets.fondoNieveInvertido;
                 fondo2 = Assets.fondoNieve;
@@ -130,12 +130,12 @@ public class Game extends Canvas implements Runnable {
 
     private void updateObstacles() {
         try {
-            if (cactusList.size() > 10) {
+            if (cactusList.size() > 15) {
                 for (int i = 0; i < 5; i++) {
                     cactusList.remove(cactusList.get(i));
                 }
             }
-            if (pterosaurioList.size() > 10) {
+            if (pterosaurioList.size() > 15) {
                 for (int i = 0; i < 5; i++) {
                     pterosaurioList.remove(pterosaurioList.get(i));
                 }
@@ -210,12 +210,10 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void drawObstacles() {
-        if (GameState.getInstance().getSTAGE() == 0) {
-            for (Cactus cactus : cactusList) {
-                cactus.render(g);
-            }
-            drawBirdForest();
+        for (Cactus cactus : cactusList) {
+            cactus.render(g);
         }
+        drawBirdForest();
     }
 
     private void drawAnimationsDinosaurio() {

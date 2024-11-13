@@ -1,6 +1,6 @@
 public class ForestCactus extends Cactus {
     public ForestCactus() {
-        image = Loader.loadImage("resources/cactus.png");
+        image = Loader.loadImage("resources/tronco.png");
     }
 
     @Override

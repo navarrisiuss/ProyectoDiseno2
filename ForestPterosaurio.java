@@ -1,6 +1,6 @@
 public class ForestPterosaurio extends Pterosaurio {
     public ForestPterosaurio() {
-        image = Loader.loadImage("resources/bird.png");
+        image = Loader.loadImage("resources/birdForest/birdForest1.png");
     }
 
     @Override

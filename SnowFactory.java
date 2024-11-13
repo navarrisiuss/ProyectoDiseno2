@@ -21,14 +21,14 @@ public class SnowFactory implements ObstacleFactory {
 
     @Override
     public Cactus createCactus() {
-        Cactus cactus = new ForestCactus();
+        Cactus cactus = new SnowCactus();
         cactus.setBehavior(getBehavior(Cactus.class));
         return cactus;
     }
 
     @Override
     public Pterosaurio createPterosaurio() {
-        Pterosaurio pterosaurio = new ForestPterosaurio();
+        Pterosaurio pterosaurio = new SnowPterosaurio();
         pterosaurio.setBehavior(getBehavior(Pterosaurio.class));
         return pterosaurio;
     }

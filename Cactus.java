@@ -2,18 +2,16 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Cactus {
-    public int x = Assets.fondoBosque.getWidth(); // Posición inicial en X
-    public int y = 580; // Posición inicial en Y
-    public static BufferedImage image; // Imagen asociada al cactus
-    private ObstacleBehavior<Cactus> behavior; // Comportamiento del cactus
-    private String type = "ground"; // Tipo de obstáculo ("ground" o "sky")
+    public int x = Assets.fondoBosque.getWidth(); 
+    public int y = 580; 
+    public static BufferedImage image; 
+    private ObstacleBehavior<Cactus> behavior; 
+    private String type = "ground"; 
 
-    // Asigna el comportamiento (Strategy)
     public void setBehavior(ObstacleBehavior<Cactus> behavior) {
         this.behavior = behavior;
     }
 
-    // Actualiza el estado del cactus según su comportamiento
     public void update() {
         if (behavior != null) {
             behavior.updateBehavior(this);
@@ -22,22 +20,18 @@ public abstract class Cactus {
 
     public abstract Cactus clone();
 
-    // Renderiza el cactus en la pantalla
     public void render(Graphics g) {
         g.drawImage(image, x, y, null);
     }
 
-    // Obtiene la hitbox del cactus como un rectángulo
     public Rectangle getHitbox() {
         return new Rectangle(x, y, image.getWidth(), image.getHeight());
     }
 
-    // Asigna el tipo del cactus ("ground" o "sky")
     public void setType(String type) {
         this.type = type;
     }
 
-    // Obtiene el tipo del cactus
     public String getType() {
         return type;
     }
@@ -71,7 +65,6 @@ public abstract class Cactus {
     }
 
     public void setPosition(int i, int y2) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setPosition'");
     }
 }

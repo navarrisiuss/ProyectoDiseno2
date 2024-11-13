@@ -11,13 +11,11 @@ public class GameOver extends Canvas {
     public GameOver(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
 
-        // Agrega un MouseListener para manejar los clics
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Point clickPoint = e.getPoint();
 
-                // Verifica qué botón fue clicado
                 if (button1Bounds.contains(clickPoint)) {
                     onButton1Click();
                 }

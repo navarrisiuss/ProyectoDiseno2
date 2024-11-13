@@ -16,15 +16,15 @@ public class GameWindow extends JFrame {
     }
 
     public void setPanel(Canvas panel) {
-        getContentPane().removeAll(); // Elimina el contenido actual
-        add(panel); // Agrega el nuevo panel
+        getContentPane().removeAll(); 
+        add(panel); 
         revalidate();
         repaint();
 
         panel.requestFocusInWindow();
 
         if (panel instanceof Game) {
-            ((Game) panel).start(); // Inicia el juego si el panel es una instancia de Game
+            ((Game) panel).start(); 
         }
     }
 }

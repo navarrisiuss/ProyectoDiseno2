@@ -146,8 +146,7 @@ public class Game extends Canvas implements Runnable {
             for (Pterosaurio pterosaurio : pterosaurioList) {
                 pterosaurio.x -= (VELOCIDAD_FONDO + CORRECTOR_X_PTEROSAURIO);
             }
-        } catch (Exception e) {
-            // Nada
+        } catch (Exception e) { 
         }
     }
 
@@ -167,7 +166,6 @@ public class Game extends Canvas implements Runnable {
         FONDO_INVERTIDO_X = FONDO_X + Assets.fondoBosque.getWidth();
         FONDO2_X = FONDO_INVERTIDO_X + Assets.fondoBosqueInvertido.getWidth();
 
-        // Carrusel infinito de fondos
         if (FONDO2_X <= 0) {
             FONDO_X = 0;
             FONDO_INVERTIDO_X = FONDO_X + Assets.fondoBosque.getWidth();

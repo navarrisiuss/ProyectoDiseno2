@@ -2,7 +2,7 @@ public class SnowFactory implements ObstacleFactory {
     private String behaviorType;
 
     public SnowFactory() {
-        this.behaviorType = "traditional"; // Comportamiento predeterminado
+        this.behaviorType = "traditional"; 
     }
 
     public SnowFactory(String behaviorType) {

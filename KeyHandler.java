@@ -37,7 +37,6 @@ public class KeyHandler implements KeyListener {
             down = false;
         }
 
-        // Cualquier tecla liberada
         any = false;
     }
 }

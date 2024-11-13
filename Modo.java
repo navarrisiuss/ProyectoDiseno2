@@ -3,23 +3,21 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Modo extends Canvas {
-    private GameWindow gameWindow; // Referencia al GameWindow
-    private Image modoImage; // Imagen del menú principal
-    private Rectangle button1Bounds; // Área del botón "Forest"
-    private Rectangle button2Bounds; // Área del botón "Desert"
-    private Rectangle button3Bounds; // Área del botón "Snow"
+    private GameWindow gameWindow; 
+    private Image modoImage; 
+    private Rectangle button1Bounds; 
+    private Rectangle button2Bounds; 
+    private Rectangle button3Bounds; 
 
     public Modo(GameWindow gameWindow) {
-        this.gameWindow = gameWindow; // Guarda la referencia del GameWindow
+        this.gameWindow = gameWindow; 
 
         modoImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("resources/modo.png"));
 
-        // Define las áreas de los botones
         button1Bounds = new Rectangle(360, 450, 150, 80);
         button2Bounds = new Rectangle(720, 450, 150, 80);
         button3Bounds = new Rectangle(550, 550, 170, 80);
 
-        // Agrega un MouseListener para manejar los clics
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -42,17 +40,14 @@ public class Modo extends Canvas {
     public void paint(Graphics g) {
         super.paint(g);
 
-        // Renderiza la imagen del menú
         g.drawImage(modoImage, 0, 0, getWidth(), getHeight(), this);
 
-        // (Opcional) Dibuja las áreas de los botones para depuración
-        g.setColor(new Color(255, 0, 0, 50)); // Rojo transparente
+        g.setColor(new Color(255, 0, 0, 0)); // Rojo transparente
         g.fillRect(button1Bounds.x, button1Bounds.y, button1Bounds.width, button1Bounds.height);
         g.fillRect(button2Bounds.x, button2Bounds.y, button2Bounds.width, button2Bounds.height);
         g.fillRect(button3Bounds.x, button3Bounds.y, button3Bounds.width, button3Bounds.height);
     }
 
-    // Métodos para manejar clics en los botones
     private void onButton1Click() {
         System.out.println("Botón 1 clicado: modo tradicional");
         GameState.getInstance().setSTRATEGY(0);

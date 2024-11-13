@@ -2,9 +2,9 @@ import java.awt.Point;
 
 public class Obstacle {
     private ObstacleBehavior behavior;
-    private String type; // Tipo del obstáculo: "ground" o "sky"
-    private Point position; // Posición del obstáculo
-    private int speed; // Velocidad de movimiento
+    private String type; 
+    private Point position; 
+    private int speed; 
 
     public Obstacle(ObstacleBehavior behavior) {
         this.behavior = behavior;
@@ -18,7 +18,6 @@ public class Obstacle {
         behavior.updateBehavior(this);
     }
 
-    // Getters y Setters para posición, tipo y velocidad
     public Point getPosition() {
         return position;
     }

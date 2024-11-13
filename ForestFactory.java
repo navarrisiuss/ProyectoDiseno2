@@ -2,7 +2,7 @@ public class ForestFactory implements ObstacleFactory {
     private String behaviorType;
 
     public ForestFactory() {
-        this.behaviorType = "traditional"; // Comportamiento predeterminado
+        this.behaviorType = "traditional"; 
     }
 
     public ForestFactory(String behaviorType) {

@@ -71,12 +71,12 @@ public class GameMain extends Canvas {
     // Métodos para manejar clics en los botones
     private void onButton1Click() {
         System.out.println("Botón 1 clicado: Iniciar juego");
-        gameWindow.setPanel(new Game(gameWindow)); // Cambia al panel del juego
+        gameWindow.setPanel(new Temas(gameWindow)); // Cambia al panel de juego
     }
 
     private void onButton2Click() {
         System.out.println("Botón 2 clicado: Opciones");
-        gameWindow.setPanel(new Temas(gameWindow)); // Cambia al panel de opciones
+        gameWindow.setPanel(new Modo(gameWindow)); // Cambia al panel de opciones
     }
 
     private void onButton3Click() {
